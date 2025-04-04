@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=central_blood_bank
+POSTGRES_USER=OyqMzAdXdWORjUbayjGwCEEExxdLaXEs
+POSTGRES_PASSWORD=MKeEGN3i8CYMkjXVRUKkrXcPLxgYYBFsFE1uR9GYMrNr69Qf2nVVRd7oGRpbzZGx
