@@ -31,3 +31,8 @@ class DonorCreateSerializer(serializers.ModelSerializer):
             "virus_test_result": {"required": True},
         }
 
+
+class BloodStockSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BloodStock
+        fields = "__all__"

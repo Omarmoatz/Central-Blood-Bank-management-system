@@ -23,3 +23,10 @@ class DonorViewSet(
             return DonorCreateSerializer
         return super().get_serializer_class()
 
+class BloodStockViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    viewsets.GenericViewSet,
+):
+    queryset = BloodStock.objects.all()
+    serializer_class = BloodStockSerializer
