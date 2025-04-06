@@ -23,11 +23,7 @@ class DonorCreateSerializer(serializers.ModelSerializer):
             "virus_test_result",
         )
         extra_kwargs = {
-            "name": {"required": True},
-            "national_id": {"required": True},
-            "email": {"required": True},
-            "city": {"required": True},
-            "blood_type": {"required": True},
+            "last_donation": {"required": True},
             "virus_test_result": {"required": True},
         }
 
