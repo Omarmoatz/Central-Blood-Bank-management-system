@@ -1,26 +1,25 @@
-# from rest_framework import status
-# from rest_framework.decorators import action
-# from rest_framework.mixins import ListModelMixin
-# from rest_framework.mixins import RetrieveModelMixin
-# from rest_framework.mixins import UpdateModelMixin
-# from rest_framework.response import Response
-# from rest_framework.viewsets import GenericViewSet
+from rest_framework import mixins
+from rest_framework import viewsets
 
-# from central_blood_bank.users.models import User
-
-# from .serializers import UserSerializer
+from central_blood_bank.donors.api.serializers import BloodStockSerializer
+from central_blood_bank.donors.api.serializers import DonorCreateSerializer
+from central_blood_bank.donors.api.serializers import DonorListSerializer
+from central_blood_bank.donors.models import BloodStock
+from central_blood_bank.donors.models import Donor
 
 
-# class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
-#     serializer_class = UserSerializer
-#     queryset = User.objects.all()
-#     lookup_field = "username"
+class DonorViewSet(
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    viewsets.GenericViewSet,
+):
+    queryset = Donor.objects.all()
+    serializer_class = DonorListSerializer
 
-#     def get_queryset(self, *args, **kwargs):
-#         assert isinstance(self.request.user.id, int)
-#         return self.queryset.filter(id=self.request.user.id)
+    def get_serializer_class(self):
+        if self.action == "list":
+            return DonorListSerializer
+        if self.action == "create":
+            return DonorCreateSerializer
+        return super().get_serializer_class()
 
-#     @action(detail=False)
-#     def me(self, request):
-#         serializer = UserSerializer(request.user, context={"request": request})
-#         return Response(status=status.HTTP_200_OK, data=serializer.data)

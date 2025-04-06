@@ -1,12 +1,10 @@
-# from django.urls import path
+from rest_framework.routers import DefaultRouter
 
-# from .views import user_detail_view
-# from .views import user_redirect_view
-# from .views import user_update_view
+from central_blood_bank.donors.api.views import BloodStockViewSet
+from central_blood_bank.donors.api.views import DonorViewSet
 
-# app_name = "users"
-# urlpatterns = [
-#     path("~redirect/", view=user_redirect_view, name="redirect"),
-#     path("~update/", view=user_update_view, name="update"),
-#     path("<str:username>/", view=user_detail_view, name="detail"),
-# ]
+router = DefaultRouter()
+router.register("donors", DonorViewSet, basename="donor")
+
+urlpatterns = router.urls
+app_name = "donors"
