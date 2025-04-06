@@ -1,40 +1,26 @@
-# from allauth.account.decorators import secure_admin_login
-# from django.conf import settings
-# from django.contrib import admin
-# from django.contrib.auth import admin as auth_admin
-# from django.utils.translation import gettext_lazy as _
+from django.contrib import admin
 
-# from .forms import UserAdminChangeForm
-# from .forms import UserAdminCreationForm
-# from .models import User
-
-# if settings.DJANGO_ADMIN_FORCE_ALLAUTH:
-#     # Force the `admin` sign in process to go through the `django-allauth` workflow:
-#     # https://docs.allauth.org/en/latest/common/admin.html#admin
-#     admin.autodiscover()
-#     admin.site.login = secure_admin_login(admin.site.login)  # type: ignore[method-assign]
+from central_blood_bank.donors.models import BloodStock
+from central_blood_bank.donors.models import Donor
 
 
-# @admin.register(User)
-# class UserAdmin(auth_admin.UserAdmin):
-#     form = UserAdminChangeForm
-#     add_form = UserAdminCreationForm
-#     fieldsets = (
-#         (None, {"fields": ("username", "password")}),
-#         (_("Personal info"), {"fields": ("name", "email")}),
-#         (
-#             _("Permissions"),
-#             {
-#                 "fields": (
-#                     "is_active",
-#                     "is_staff",
-#                     "is_superuser",
-#                     "groups",
-#                     "user_permissions",
-#                 ),
-#             },
-#         ),
-#         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
-#     )
-#     list_display = ["username", "name", "is_superuser"]
-#     search_fields = ["name"]
+@admin.register(Donor)
+class DonorAdmin(admin.ModelAdmin):
+    list_display = [
+        "name",
+        "national_id",
+        "email",
+        "city",
+        "blood_type",
+        "last_donation",
+    ]
+    list_filter = ["blood_type", "city"]
+    search_fields = ["name", "national_id", "email"]
+
+
+@admin.register(BloodStock)
+class DonorAdmin(admin.ModelAdmin):
+    list_display = ["blood_type", "city", "expiration_date", "donor"]
+    list_filter = ["blood_type", "city"]
+    search_fields = ["blood_type", "donor", "city"]
+    raw_id_fields = ["donor"]
