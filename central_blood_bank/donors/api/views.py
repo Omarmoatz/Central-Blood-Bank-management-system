@@ -40,7 +40,7 @@ class DonorViewSet(
 
 class BloodStockViewSet(
     mixins.ListModelMixin,
-    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
     viewsets.GenericViewSet,
 ):
     queryset = BloodStock.objects.all()
