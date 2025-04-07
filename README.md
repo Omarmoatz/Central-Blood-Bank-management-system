@@ -1,81 +1,108 @@
-# Central Blood Bank
+Here's a clean and professional `README.md` file for your **Blood Bank Management System** project:
 
-Behold My Awesome Project!
+---
 
-[![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+# 🩸 Blood Bank Management System
 
-License: MIT
+A Django-based backend system for managing blood donations, donor eligibility, and hospital requests. This project uses Celery for task processing and Redis as the broker, and is fully containerized with Docker.
 
-## Settings
+---
 
-Moved to [settings](https://cookiecutter-django.readthedocs.io/en/latest/1-getting-started/settings.html).
+## 🚀 Features
 
-## Basic Commands
+- Donor registration and eligibility verification.
+- Automated acceptance/rejection of donations based on:
+  - 3-month interval since last donation.
+  - Negative virus test.
+- Blood stock tracking with expiration.
+- Hospital blood requests with urgency prioritization.
+- Auto-processing when 10+ requests are queued.
+- Email notifications for rejected donations.
+- Celery background tasks for donation and request processing.
 
-### Setting Up Your Users
+---
 
-- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+## 🧱 Tech Stack
 
-- To create a **superuser account**, use this command:
+- **Python 3.10+**
+- **Django 4+**
+- **Django REST Framework**
+- **PostgreSQL**
+- **Celery**
+- **Redis**
+- **Docker + Docker Compose**
 
-      $ python manage.py createsuperuser
+---
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+## 🛠️ Setup Instructions
 
-### Type checks
-
-Running type checks with mypy:
-
-    $ mypy central_blood_bank
-
-### Test coverage
-
-To run the tests, check your test coverage, and generate an HTML coverage report:
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-#### Running tests with pytest
-
-    $ pytest
-
-### Live reloading and Sass CSS compilation
-
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/2-local-development/developing-locally.html#using-webpack-or-gulp).
-
-### Celery
-
-This app comes with Celery.
-
-To run a celery worker:
+### 1. Clone the Repository
 
 ```bash
-cd central_blood_bank
-celery -A config.celery_app worker -l info
+git clone https://github.com/your-org/blood-bank-backend.git
+cd blood-bank-backend
 ```
 
-Please note: For Celery's import magic to work, it is important _where_ the celery commands are run. If you are in the same folder with _manage.py_, you should be right.
+### 2. Create `.env` File
 
-To run [periodic tasks](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html), you'll need to start the celery beat scheduler service. You can start it as a standalone process:
+```env
+SECRET_KEY=your_secret_key
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+DB_NAME=bloodbank
+DB_USER=postgres
+DB_PASSWORD=yourpassword
+DB_HOST=db
+DB_PORT=5432
+```
+
+### 3. Build & Run with Docker
 
 ```bash
-cd central_blood_bank
-celery -A config.celery_app beat
+docker-compose up --build
 ```
 
-or you can embed the beat service inside a worker with the `-B` option (not recommended for production use):
+---
+
+## 🧪 Running Tests
 
 ```bash
-cd central_blood_bank
-celery -A config.celery_app worker -B -l info
+docker-compose exec web python manage.py test
 ```
 
-## Deployment
+---
 
-The following details how to deploy this application.
+## 📬 API Endpoints
 
-### Docker
+| Endpoint                 | Method | Description                          |
+|--------------------------|--------|--------------------------------------|
+| `/donors/`               | POST   | Register a new donor                 |
+| `/blood-stock/`          | GET    | View all available blood stock       |
+| `/hospital-requests/`    | POST   | Submit a blood request by hospital   |
+| `/api/docs/`             | GET    | for all other endpoints              |
 
-See detailed [cookiecutter-django Docker documentation](https://cookiecutter-django.readthedocs.io/en/latest/3-deployment/deployment-with-docker.html).
+---
+
+## 📦 Background Tasks
+
+- `manage_donation(donor_id)`: Evaluates donation and stores it if valid.
+- `process_hospital_requests()`: Processes queued hospital requests (10+).
+
+---
+
+## 🤝 Contribution
+
+Feel free to fork and improve. Pull requests are welcome!
+
+
+## 📧 Contact
+
+For questions or help: **tech@intalq.com**
+```
+
+---
+
+Let me know if you want to customize it for GitHub Pages, add Postman docs, or Swagger UI integration.
+
+**a.** Add Postman collection export for quick API testing.  
+**b.** Add Swagger/OpenAPI docs using `drf-spectacular` or `drf-yasg`.
