@@ -1,14 +1,14 @@
 from rest_framework import mixins
 from rest_framework import viewsets
-from rest_framework.decorators import action
-from rest_framework.response import Response
 
-from central_blood_bank.hospital_requests.models import HospitalRequest
+from central_blood_bank.hospital_requests.api.serializers import (
+    HospitalRequestCreateSerializer,
+)
 from central_blood_bank.hospital_requests.api.serializers import (
     HospitalRequestRetrieveSerializer,
-    HospitalRequestCreateSerializer
 )
-from central_blood_bank.hospital_requests.service.request_service import RequestService
+from central_blood_bank.hospital_requests.models import HospitalRequest
+
 
 class HospitalRequestViewSet(
     mixins.ListModelMixin,
@@ -25,5 +25,3 @@ class HospitalRequestViewSet(
         if self.action == "create":
             return HospitalRequestCreateSerializer
         return super().get_serializer_class()
-
-

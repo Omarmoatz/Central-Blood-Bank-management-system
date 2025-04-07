@@ -7,7 +7,7 @@ from central_blood_bank.hospital_requests.service.request_service import Request
 class HospitalRequestRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = HospitalRequest
-        fields = '__all__'
+        fields = "__all__"
 
 
 class HospitalRequestCreateSerializer(serializers.ModelSerializer):
@@ -21,5 +21,11 @@ class HospitalRequestCreateSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        RequestService().handle_hospital_requests()
+        if (
+            HospitalRequest.objects.filter(
+                status=HospitalRequest.StatusChoices.PENDING,
+            ).count()
+            >= 10
+        ):
+            RequestService().handle_hospital_request_queue()
         return super().create(validated_data)

@@ -19,7 +19,7 @@ class DonorAdmin(admin.ModelAdmin):
 
 
 @admin.register(BloodStock)
-class DonorAdmin(admin.ModelAdmin):
+class BloodStockAdmin(admin.ModelAdmin):
     list_display = ["blood_type", "city", "expiration_date", "donor"]
     list_filter = ["blood_type", "city"]
     search_fields = ["blood_type", "donor", "city"]
