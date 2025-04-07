@@ -32,3 +32,7 @@ class BloodStockSerializer(serializers.ModelSerializer):
     class Meta:
         model = BloodStock
         fields = "__all__"
+
+
+class EmptySerializer(serializers.Serializer):
+    pass
