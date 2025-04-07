@@ -1,11 +1,9 @@
-# from rest_framework.routers import DefaultRouter
+from rest_framework.routers import DefaultRouter
 
-# from central_blood_bank.donors.api.views import BloodStockViewSet
-# from central_blood_bank.donors.api.views import DonorViewSet
+from central_blood_bank.hospital_requests.api.views import HospitalRequestViewSet
 
-# router = DefaultRouter()
-# router.register("donors", DonorViewSet, basename="donor")
-# router.register("blood-stocks", BloodStockViewSet, basename="blood-stock")
+router = DefaultRouter()
+router.register("hospital-requests", HospitalRequestViewSet, basename="hospital-requests")
 
-# urlpatterns = router.urls
-# app_name = "donors"
+urlpatterns = router.urls
+app_name = "hospital_requests"

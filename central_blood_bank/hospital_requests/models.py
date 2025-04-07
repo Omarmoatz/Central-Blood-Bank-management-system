@@ -22,4 +22,4 @@ class HospitalRequest(models.Model):
     status = models.CharField(max_length=10, choices=StatusChoices.choices, default=StatusChoices.PENDING)
 
     def __str__(self):
-        return f"{self.hospital_name} - {self.blood_type} "
+        return f"{self.hospital_name} - {self.blood_type}"
