@@ -9,7 +9,7 @@ from central_blood_bank.donors.api.serializers import DonorListSerializer
 from central_blood_bank.donors.api.serializers import EmptySerializer
 from central_blood_bank.donors.models import BloodStock
 from central_blood_bank.donors.models import Donor
-from central_blood_bank.donors.tasks import manage_donation
+from central_blood_bank.donors.service.donation_service import DonationService
 
 
 class DonorViewSet(
@@ -34,7 +34,7 @@ class DonorViewSet(
     @action(detail=True, methods=["post"])
     def donate(self, request, *args, **kwargs):
         donor_id = self.kwargs["pk"]
-        manage_donation.delay(donor_id)
+        DonationService().handle_donation(donor_id)
         return Response({"message": "Donation In Progress!"}, status=200)
 
 
