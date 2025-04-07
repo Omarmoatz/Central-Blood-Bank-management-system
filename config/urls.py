@@ -32,6 +32,7 @@ urlpatterns += [
     # API base url
     path("api/", include("config.api_router")),
     path("api/", include("central_blood_bank.donors.urls")),
+    path("api/", include("central_blood_bank.hospital_requests.urls")),
     # DRF auth token
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(

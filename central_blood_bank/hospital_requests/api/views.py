@@ -5,25 +5,25 @@ from rest_framework.response import Response
 
 from central_blood_bank.hospital_requests.models import HospitalRequest
 from central_blood_bank.hospital_requests.api.serializers import (
-    HospitalRequestSerializer,
+    HospitalRequestRetrieveSerializer,
+    HospitalRequestCreateSerializer
 )
-
+from central_blood_bank.hospital_requests.service.request_service import RequestService
 
 class HospitalRequestViewSet(
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
+    mixins.CreateModelMixin,
     viewsets.GenericViewSet,
 ):
     queryset = HospitalRequest.objects.all()
-    serializer_class = HospitalRequestSerializer
+    serializer_class = HospitalRequestRetrieveSerializer
 
-#     def get_serializer_class(self):
-#         if self.action == "list":
-#             return DonorListSerializer
-#         if self.action in ["create", "update", "partial_update"]:
-#             return DonorCreateUpdateSerializer
-#         if self.action == "donate":
-#             return EmptySerializer
-#         return super().get_serializer_class()
+    def get_serializer_class(self):
+        if self.action == "list":
+            return HospitalRequestRetrieveSerializer
+        if self.action == "create":
+            return HospitalRequestCreateSerializer
+        return super().get_serializer_class()
 
 
