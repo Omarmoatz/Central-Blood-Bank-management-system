@@ -10,7 +10,7 @@ class DonorListSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class DonorCreateSerializer(serializers.ModelSerializer):
+class DonorCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donor
         fields = (

@@ -1,3 +1,4 @@
+from datetime import date, timedelta
 from django.db import models
 
 
@@ -47,3 +48,13 @@ class BloodStock(models.Model):
 
     def __str__(self):
         return f"{self.blood_type} - {self.city} - {self.expiration_date}"
+
+    def save(self, *args, **kwargs):
+        if not self.expiration_date:
+            self.expiration_date = date.today() + timedelta(days=42)
+
+        if self.donor.last_donation:
+            self.donor.last_donation = date.today()
+            self.donor.save()
+            
+        super().save(*args, **kwargs)

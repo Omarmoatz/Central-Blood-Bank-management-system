@@ -1,9 +1,12 @@
+import logging
 from datetime import date, timedelta
 from celery import shared_task
 from django.core.mail import send_mail
 
 from central_blood_bank.donors.models import BloodStock, Donor
+from central_blood_bank.donors.service.blood_stock_service import BloodStockService
 
+logger = logging.getLogger(__name__)
 
 @shared_task
 def manage_donation(donor_id):
@@ -16,6 +19,7 @@ def manage_donation(donor_id):
             [donor.email],
             fail_silently=False,
         )
+        logger.warning(f"Donation rejected for {donor.name} ({donor.national_id}): Less than 3 months since last donation.")
         return "Donation rejected: Less than 3 months since last donation."
     elif not donor.virus_test_result:
         send_mail(
@@ -25,12 +29,8 @@ def manage_donation(donor_id):
             [donor.email],
             fail_silently=False,
         )
+        logger.warning(f"Donation rejected for {donor.name} ({donor.national_id}): Positive virus test.")
         return "Donation rejected: Positive virus test."
     
-    BloodStock.objects.create(
-        blood_type=donor.blood_type,
-        city=donor.city,
-        expiration_date=date.today() + timedelta(days=42),
-        donor=donor
-    )
+    BloodStockService.create_blood_stock(donor)
     return "Donation accepted and added to stock."
