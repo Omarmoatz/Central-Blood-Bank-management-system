@@ -104,5 +104,5 @@ For questions or help: **tech@intalq.com**
 
 Let me know if you want to customize it for GitHub Pages, add Postman docs, or Swagger UI integration.
 
-**a.** Add Postman collection export for quick API testing.  
+**a.** Add Postman collection export for quick API testing.
 **b.** Add Swagger/OpenAPI docs using `drf-spectacular` or `drf-yasg`.
