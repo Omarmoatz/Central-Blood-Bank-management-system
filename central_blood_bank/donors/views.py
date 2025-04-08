@@ -1,9 +1,14 @@
+from django.views import generic
+from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.views.generic import TemplateView
 
-from django.urls import reverse_lazy
-from .forms import DonorForm
-from .services.donation_service import DonationService
+from central_blood_bank.donors.models import Donor
+from central_blood_bank.donors.forms import DonorForm
+from central_blood_bank.donors.services.donation_service import DonationService
+
+class DonorListView(generic.ListView):
+    model = Donor
 
 class DonorRegisterView(FormView):
     template_name = 'donor_register.html'

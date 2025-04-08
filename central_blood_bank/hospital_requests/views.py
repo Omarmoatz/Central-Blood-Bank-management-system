@@ -12,6 +12,6 @@ class HospitalRequestView(FormView):
 
     def form_valid(self, form):
         form.save()
-        if HospitalRequest.objects.filter(status='Pending').count() >= 10:
+        if HospitalRequest.objects.filter(status=HospitalRequest.StatusChoices.PENDING).count() >= 10:
             RequestService().handle_hospital_request_queue()
         return super().form_valid(form)
