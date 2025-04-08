@@ -4,7 +4,7 @@ from datetime import date
 from django.core.mail import send_mail
 
 from central_blood_bank.donors.models import Donor
-from central_blood_bank.donors.service.blood_stock_service import BloodStockService
+from central_blood_bank.donors.services.blood_stock_service import BloodStockService
 from central_blood_bank.donors.tasks import manage_donation
 
 logger = logging.getLogger(__name__)

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from central_blood_bank.hospital_requests.models import HospitalRequest
-from central_blood_bank.hospital_requests.service.request_service import RequestService
+from central_blood_bank.hospital_requests.services.request_service import RequestService
 
 
 class HospitalRequestRetrieveSerializer(serializers.ModelSerializer):

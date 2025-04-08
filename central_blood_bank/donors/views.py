@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 
 from django.urls import reverse_lazy
 from .forms import DonorForm
-from .service.donation_service import DonationService
+from .services.donation_service import DonationService
 
 class DonorRegisterView(FormView):
     template_name = 'donor_register.html'

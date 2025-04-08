@@ -9,7 +9,7 @@ from central_blood_bank.donors.api.serializers import DonorListSerializer
 from central_blood_bank.donors.api.serializers import EmptySerializer
 from central_blood_bank.donors.models import BloodStock
 from central_blood_bank.donors.models import Donor
-from central_blood_bank.donors.service.donation_service import DonationService
+from central_blood_bank.donors.services.donation_service import DonationService
 
 
 class DonorViewSet(

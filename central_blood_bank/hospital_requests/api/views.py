@@ -1,12 +1,8 @@
 from rest_framework import mixins
 from rest_framework import viewsets
 
-from central_blood_bank.hospital_requests.api.serializers import (
-    HospitalRequestCreateSerializer,
-)
-from central_blood_bank.hospital_requests.api.serializers import (
-    HospitalRequestRetrieveSerializer,
-)
+from central_blood_bank.hospital_requests.api.serializers import HospitalRequestCreateSerializer
+from central_blood_bank.hospital_requests.api.serializers import HospitalRequestRetrieveSerializer
 from central_blood_bank.hospital_requests.models import HospitalRequest
 
 
