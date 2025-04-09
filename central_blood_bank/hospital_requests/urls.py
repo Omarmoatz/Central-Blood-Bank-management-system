@@ -12,7 +12,7 @@ router.register(
 )
 
 urlpatterns = [
-    path('hospital/request/', HospitalRequestView.as_view(), name='hospital_request'),
+    path('/', HospitalRequestView.as_view(), name='hospital_request'),
 
     *router.urls
 ]

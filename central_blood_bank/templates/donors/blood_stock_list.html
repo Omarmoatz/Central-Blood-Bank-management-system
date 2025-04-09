@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="my-5">
+    <h2 class="my-5">Blood Stock</h2>
+    <table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+        <th>Blood Type</th>
+        <th>City</th>
+        <th>Expiration Date</th>
+        <th>Donor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in stocks %}
+        <tr>
+        <td>{{ stock.blood_type }}</td>
+        <td>{{ stock.city }}</td>
+        <td>{{ stock.expiration_date }}</td>
+        <td>{{ stock.donor.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+{% endblock %}

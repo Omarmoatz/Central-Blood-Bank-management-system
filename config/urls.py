@@ -12,16 +12,12 @@ from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path(
-        "about/",
-        TemplateView.as_view(template_name="pages/about.html"),
-        name="about",
-    ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("central_blood_bank.users.urls", namespace="users")),
     path("donors/", include("central_blood_bank.donors.urls", namespace="donors")),
+    path("hospital_requests/", include("central_blood_bank.hospital_requests.urls")),
     path("accounts/", include("allauth.urls")),
 
     

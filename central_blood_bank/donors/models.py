@@ -27,7 +27,7 @@ class Donor(models.Model):
     class Meta:
         verbose_name = "Donor"
         verbose_name_plural = "Donors"
-        ordering = ["name"]
+        ordering = ["-id"]
         unique_together = ("national_id", "email")
 
     def __str__(self):

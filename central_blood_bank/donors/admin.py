@@ -13,6 +13,7 @@ class DonorAdmin(admin.ModelAdmin):
         "city",
         "blood_type",
         "last_donation",
+        "virus_test_result"
     ]
     list_filter = ["blood_type", "city"]
     search_fields = ["name", "national_id", "email"]
