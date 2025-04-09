@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mt-5">
+    <h2 class="my-5">Donor Details</h2>
+    <table class="table">
+    <tr><th>Name:</th><td>{{ donor.name }}</td></tr>
+    <tr><th>National ID:</th><td>{{ donor.national_id }}</td></tr>
+    <tr><th>Email:</th><td>{{ donor.email }}</td></tr>
+    <tr><th>City:</th><td>{{ donor.city }}</td></tr>
+    <tr><th>Blood Type:</th><td>{{ donor.blood_type }}</td></tr>
+    <tr><th>Last Donation:</th><td>{{ donor.last_donation }}</td></tr>
+    <tr><th>Virus Test Result:</th><td>{{ donor.virus_test_result|yesno:"Negative,Positive" }}</td></tr>
+    </table>
+    <a href="{% url 'donors:donor_list' %}" class="btn btn-secondary">Back to List</a>
+</div>
+{% endblock %}

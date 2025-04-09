@@ -9,12 +9,17 @@ from central_blood_bank.donors.services.donation_service import DonationService
 
 class DonorListView(generic.ListView):
     model = Donor
-    template_name = 'donor_list.html'
+    template_name = 'donors/donor_list.html'
     context_object_name = 'donors'
-    paginate_by = 10  # optional
+    paginate_by = 5
+
+class DonorDetailView(generic.DetailView):
+    model = Donor
+    template_name = 'donors/donor_detail.html'
+    context_object_name = 'donor'
 
 class DonorRegisterView(FormView):
-    template_name = 'donor_register.html'
+    template_name = 'donors/donor_register.html'
     form_class = DonorForm
     success_url = reverse_lazy('donation_result')
 
@@ -24,7 +29,7 @@ class DonorRegisterView(FormView):
         return super().form_valid(form)
     
 class DonationResultView(TemplateView):
-    template_name = 'donation_result.html'
+    template_name = 'donors/donation_result.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
