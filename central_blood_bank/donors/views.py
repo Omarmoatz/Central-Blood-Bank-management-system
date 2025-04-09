@@ -9,6 +9,9 @@ from central_blood_bank.donors.services.donation_service import DonationService
 
 class DonorListView(generic.ListView):
     model = Donor
+    template_name = 'donor_list.html'
+    context_object_name = 'donors'
+    paginate_by = 10  # optional
 
 class DonorRegisterView(FormView):
     template_name = 'donor_register.html'
