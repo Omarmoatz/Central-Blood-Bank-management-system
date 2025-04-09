@@ -13,6 +13,7 @@ services:
     depends_on:
       - postgres
       - redis
+      - mailpit
     volumes:
       - .:/app:z
     env_file:
@@ -34,6 +35,12 @@ services:
     env_file:
       - ./.envs/.local/.postgres
 
+  mailpit:
+    image: docker.io/axllent/mailpit:latest
+    container_name: blood_bank_mailpit
+    ports:
+      - "8025:8025"
+
   redis:
     image: docker.io/redis:6
     container_name: central_blood_bank_local_redis
@@ -49,6 +56,7 @@ services:
     depends_on:
       - redis
       - postgres
+      - mailpit
     ports: []
     command: /start-celeryworker
 
@@ -59,6 +67,7 @@ services:
     depends_on:
       - redis
       - postgres
+      - mailpit
     ports: []
     command: /start-celerybeat
 

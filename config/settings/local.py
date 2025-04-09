@@ -29,10 +29,19 @@ CACHES = {
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND",
-    default="django.core.mail.backends.console.EmailBackend",
-)
+# EMAIL
+# ------------------------------------------------------------------------------
+# You should use either TLS (port 587) or SSL (port 465), but not both at the same time.
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = "omar.raouf.002@gmail.com"
+# EMAIL_HOST_PASSWORD = "lvvdagurbkgencvz"
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-host
+EMAIL_HOST = env("EMAIL_HOST", default="mailpit")
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-port
+EMAIL_PORT = 1025
 
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
