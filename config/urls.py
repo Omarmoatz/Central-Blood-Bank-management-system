@@ -17,7 +17,7 @@ urlpatterns = [
     # User management
     path("users/", include("central_blood_bank.users.urls", namespace="users")),
     path("donors/", include("central_blood_bank.donors.urls", namespace="donors")),
-    path("hospital_requests/", include("central_blood_bank.hospital_requests.urls")),
+    path("hospital_requests/", include("central_blood_bank.hospital_requests.urls", namespace="hospital_requests")),
     path("accounts/", include("allauth.urls")),
 
     
