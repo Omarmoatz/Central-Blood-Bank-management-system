@@ -26,7 +26,7 @@ class DonationService:
                 f"Donation rejected for {donor.name} ({donor.national_id})"
                 "Less than 3 months since last donation.",
             )
-            return "Donation rejected: Less than 3 months since last donation."
+            return "Donation rejected: we have informed you by the reason via your email"
         if not donor.virus_test_result:
             send_mail(
                 "Donation Rejected",
@@ -39,7 +39,7 @@ class DonationService:
                 f"Donation rejected for {donor.name} ({donor.national_id})"
                 "Positive virus test.",
             )
-            return "Donation rejected: Positive virus test."
+            return "Donation rejected: we have informed you by the reason via your email."
 
         BloodStockService(donor).create_blood_stock()
         logger.info(
