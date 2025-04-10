@@ -22,7 +22,7 @@ class RequestService:
             stock_list = BloodStock.objects.filter(blood_type=request.blood_type)
 
             if not stock_list.exists():
-                cls._notify(request, "Rejected", "No matching blood stock found.")
+                cls._notify(request, HospitalRequest.StatusChoices.REJECTED, "No matching blood stock found.")
                 continue
 
             distance_scored = [(s, get_city_distance(s.city, request.city)) for s in stock_list]
