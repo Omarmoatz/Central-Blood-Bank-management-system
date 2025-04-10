@@ -3,6 +3,17 @@ from datetime import timedelta
 
 from django.db import models
 
+class CityChoices(models.TextChoices):
+    CAIRO = "Cairo", "Cairo"
+    MANSOURA = "Mansoura", "Mansoura"
+    TANTA = "Tanta", "Tanta"
+    ALEXANDRIA = "Alexandria", "Alexandria"
+    ZAGAZIG = "Zagazig", "Zagazig"
+    BENHA = "Benha", "Benha"
+    DAMIETTA = "Damietta", "Damietta"
+    ISMAILIA = "Ismailia", "Ismailia"
+    SUEZ = "Suez", "Suez"
+    PORTSAID = "Port Said", "Port Said"
 
 class BloodTypeChoices(models.TextChoices):
     A_POSITIVE = "A+", "A+"
@@ -18,7 +29,7 @@ class BloodTypeChoices(models.TextChoices):
 class Donor(models.Model):
     national_id = models.CharField(max_length=14, unique=True)
     name = models.CharField(max_length=100)
-    city = models.CharField(max_length=50)
+    city = models.CharField(max_length=50, choices=CityChoices.choices)
     email = models.EmailField(unique=True)
     last_donation = models.DateField(null=True, blank=True)
     blood_type = models.CharField(choices=BloodTypeChoices, max_length=3)
@@ -36,7 +47,7 @@ class Donor(models.Model):
 
 class BloodStock(models.Model):
     blood_type = models.CharField(choices=BloodTypeChoices, max_length=3)
-    city = models.CharField(max_length=50)
+    city = models.CharField(max_length=50, choices=CityChoices.choices)
     expiration_date = models.DateField()
     donor = models.ForeignKey(
         Donor,

@@ -8,7 +8,9 @@ class HospitalRequestForm(forms.ModelForm):
         model = HospitalRequest
         fields = (
             "hospital_name",
-            "blood_type",
+            "email",
             "city",
+            "blood_type",
+            "quantity",
             "urgency_level",
         )

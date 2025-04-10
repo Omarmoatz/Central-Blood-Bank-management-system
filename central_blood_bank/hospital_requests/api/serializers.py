@@ -27,5 +27,5 @@ class HospitalRequestCreateSerializer(serializers.ModelSerializer):
             ).count()
             >= 10
         ):
-            RequestService().handle_hospital_request_queue()
+            RequestService.handle_hospital_request_queue()
         return super().create(validated_data)
